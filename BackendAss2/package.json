@@ -1,0 +1,17 @@
+{
+  "name": "BackendAss2",
+  "version": "1.0.0",
+  "description": "restfulApi",
+  "main": "index.js",
+  "author": "pat",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon ."
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
