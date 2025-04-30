@@ -1,0 +1,11 @@
+{
+  "name": "pat",
+  "version": "1.0.0",
+  "description": "http-server",
+  "main": "index.js",
+  "author": "pat",
+  "license": "MIT",
+  "scripts": {
+    "start": "node  index.js"
+  }
+}
