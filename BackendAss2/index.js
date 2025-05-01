@@ -7,6 +7,10 @@ const {
   createBookController,
   listBookController,
   listBookByAuthorController,
+  updateBookController,
+  deleteBookController,
+  createAuthorController,
+  listByAuthorController,
 } = require("./BookContoller");
 
 // Create instance of server
@@ -19,6 +23,10 @@ server.use(bodyParser.json());
 server.post("/book", createBookController);
 server.get("/book", listBookController);
 server.get("/book/author/:author", listBookByAuthorController);
+server.put("/book", updateBookController);
+server.delete("/book", deleteBookController);
+server.post("/author", createAuthorController);
+server.get("/author", listByAuthorController);
 
 // server.put("/book", updateBookController);
 // server.delete("/book", deleteBookController);

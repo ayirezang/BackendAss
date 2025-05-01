@@ -1,13 +1,26 @@
 //book model
 
 const mongoose = require("mongoose");
-
-const bookSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  description: String,
+const Schema = mongoose.Schema;
+const bookSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  bookId: {
+    type: Schema.Types.ObjectId,
+    ref: "Author", //model the id is referring to
+  },
 });
-// const Book = mongoose.model("Book", bookSchema);
+
 module.exports = mongoose.model("Book", bookSchema);
 
 // class BookModel {

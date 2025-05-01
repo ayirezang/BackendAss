@@ -1,14 +1,43 @@
-//store model
+//shoe model
 
 const mongoose = require("mongoose");
-const shoeSchema = new mongoose.Schema({
-  type: String,
-  size: String,
-  color: String,
-  brand: String,
-  men: String,
+const Schema = mongoose.Schema;
+const shoeSchema = new Schema({
+  type: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: String,
+    required: true,
+  },
+  color: {
+    type: String,
+    required: true,
+  },
+  brand: {
+    type: String,
+    required: true,
+  },
+  men: {
+    type: String,
+    required: true,
+  },
+  shoeId: {
+    type: Schema.Types.ObjectId,
+    ref: "male", //model the id is referring to
+  },
 });
-module.exports = mongoose.model("Shoe", shoeSchema);
+module.exports = mongoose.model("shoe", shoeSchema);
+
+// const shoeSchema = new mongoose.Schema({
+//   type: String,
+//   size: String,
+//   color: String,
+//   brand: String,
+//   men: String,
+// });
+// module.exports = mongoose.model("Shoe", shoeSchema);
 
 // class storeModel {
 //   constructor({ men, ladies, kids }) {
