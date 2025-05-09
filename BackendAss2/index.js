@@ -1,35 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bookRoutes = require("./routes/book");
+const authorRoutes = require("./routes/author");
 const bodyParser = require("body-parser");
-
-// Import controllers from BookController.js
-const {
-  createBookController,
-  listBookController,
-  listBookByAuthorController,
-  updateBookController,
-  deleteBookController,
-  createAuthorController,
-  listByAuthorController,
-} = require("./BookContoller");
 
 // Create instance of server
 const server = express();
 
 // Middleware
 server.use(bodyParser.json());
-
-// Routes
-server.post("/book", createBookController);
-server.get("/book", listBookController);
-server.get("/book/author/:author", listBookByAuthorController);
-server.put("/book", updateBookController);
-server.delete("/book", deleteBookController);
-server.post("/author", createAuthorController);
-server.get("/author", listByAuthorController);
-
-// server.put("/book", updateBookController);
-// server.delete("/book", deleteBookController);
+//routes
+server.use(bookRoutes);
+server.use(authorRoutes);
 
 //start server
 mongoose
