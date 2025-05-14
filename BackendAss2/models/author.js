@@ -15,9 +15,11 @@ const authorSchema = new Schema({
     required: true,
   },
 
-  authorId: {
-    type: Schema.Types.ObjectId,
-    ref: "Book", //model the id is referring to
-  },
+  books: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Book", //model the id is referring to
+    },
+  ],
 });
 module.exports = mongoose.model("author", authorSchema);

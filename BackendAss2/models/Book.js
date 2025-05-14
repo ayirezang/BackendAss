@@ -15,9 +15,9 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
-  bookId: {
+  authorId: {
     type: Schema.Types.ObjectId,
-    ref: "Author", //model the id is referring to
+    ref: "author", //model the id is referring to
   },
 });
 

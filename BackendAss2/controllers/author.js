@@ -24,10 +24,10 @@ const createAuthorController = async (req, res) => {
   }
 };
 //fetch author
-const listByAuthorController = async (req, res) => {
+const listBooksWithAuthorController = async (req, res) => {
   try {
-    const book = await BookModel.find().populate("authorId");
-    res.json({ message: "book fetched", data: book });
+    const books = await BookModel.find().populate("authorId");
+    res.json({ message: "books fetched", data: books });
   } catch (error) {
     res.status(500).json({ error: "Failed" });
   }
@@ -37,5 +37,5 @@ module.exports = {
   listBookByAuthorController,
 
   createAuthorController,
-  listByAuthorController,
+  listBooksWithAuthorController,
 };
