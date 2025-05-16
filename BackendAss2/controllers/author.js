@@ -14,8 +14,8 @@ const listBookByAuthorController = async (req, res) => {
 //vreate author
 const createAuthorController = async (req, res) => {
   try {
-    const { name, email, country, authorId } = req.body;
-    const author = new authorModel({ name, email, country, authorId });
+    const { name, email, country } = req.body;
+    const author = new authorModel({ name, email, country });
     const savedAuthor = await author.save();
     res.json({ message: "author created", data: savedAuthor });
   } catch (error) {
