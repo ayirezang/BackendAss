@@ -4,6 +4,7 @@ const bookRoutes = require("./routes/book");
 const authorRoutes = require("./routes/author");
 const userRoutes = require("./routes/user");
 const { body } = require("express-validator");
+require("dotenv").config();
 
 const bodyParser = require("body-parser");
 
@@ -19,9 +20,7 @@ server.use(userRoutes);
 
 //start server
 mongoose
-  .connect(
-    "mongodb+srv://BookUser:amour@cluster0.9opkdne.mongodb.net/BookUser?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGO_DB)
   .then((result) => {
     server.listen(4000, () => console.log("server is ready"));
   })

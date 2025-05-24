@@ -1,6 +1,7 @@
 const express = require("express");
 const userModel = require("../models/user");
 const { validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
 
@@ -24,6 +25,7 @@ const signUp = async (req, res) => {
     if (existingUsername) {
       return res.status(400).json({ message: "username  already exists" });
     }
+
     //hashing password
     bcrypt.hash(password, 10).then((hashPassword) => {
       //creating a new user
@@ -32,12 +34,19 @@ const signUp = async (req, res) => {
         email,
         password: hashPassword,
       });
+      //creating token
+      const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, {
+        expiresIn: "1d",
+      });
       //saving user to the database
       newUser
         .save()
         .then((user) => {
-          res.status(201).json({ message: "user created successfully", user });
+          res
+            .status(201)
+            .json({ message: "user created successfully", token, user });
         })
+
         .catch((err) => {
           res
             .status(500)
@@ -62,8 +71,12 @@ const signIn = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "invalid credentials" });
     }
+    //creating the token
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
     //return user data on successful signin
-    return res.status(200).json({ message: "login successful", user });
+    return res.status(200).json({ message: "login successful", token, user });
   } catch (error) {
     console.error("error signing in:", error);
     res.status(500).json({ message: "internal server error" });

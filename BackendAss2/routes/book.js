@@ -7,11 +7,13 @@ const {
   updateBookController,
   deleteBookController,
 } = require("../controllers/book");
+const Authorization = require("../controllers/Auth");
 
 const router = express.Router();
 
 router.post(
   "/book",
+  Authorization,
   [
     body("title")
       .notEmpty()
